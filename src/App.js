@@ -15,8 +15,9 @@ export default function App() {
           mainly as a way to learn different kinds of front-end programming, 
           as it's one of my weaker points as a backend developer. I'm a software 
           developer currently attending the University of Massachusetts Lowell,
-          and I would much rather do backened work than frontend, but with this website
-          I hope to be versed in both!"/>
+          and I would much rather do backend work than frontend, but with this website
+          I hope to be versed in both!"
+        />
       </div>
     </div>
   );
@@ -65,7 +66,7 @@ const Blurb = (props) => {
   return (
     <div className='w-96 bg-gray-50 h-auto flex flex-col rounded-lg'>
       <h1 className='text-lg font-semibold self-center my-3'>{props.title}</h1>
-      <p className='text-base font-sans font-extralight self-center mx-5 px-2 py-0.5 mb-5 bg-gray-200 rounded-lg'>{props.body}</p>
+      <p className='text-base font-sans font-extralight self-center mx-5 px-2 py-0.5 mb-5 bg-light-blue-50 rounded-lg'>{props.body}</p>
     </div>
   );
 }
