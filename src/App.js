@@ -8,6 +8,16 @@ export default function App() {
     <div className="min-h-screen bg-gray-200 flex flex-col">
       <NavBar />
       <IntroHeader />
+      <div className='flex flex-row flex-wrap justify-center py-20'>
+        <Blurb 
+          title='About Me' 
+          body="Hi! My name is Evan O'Malley, and I'm using this website 
+          mainly as a way to learn different kinds of front-end programming, 
+          as it's one of my weaker points as a backend developer. I'm a software 
+          developer currently attending the University of Massachusetts Lowell,
+          and I would much rather do backened work than frontend, but with this website
+          I hope to be versed in both!"/>
+      </div>
     </div>
   );
 }
@@ -15,7 +25,7 @@ export default function App() {
 const NavBar = () => {
   return (
     <div className='min-w-full bg-gray-700 h-12 flex flex-row justify-end'>
-      <NavButton text='SMth else' />
+      <NavButton text='SMth else' path='/' />
       <NavButton text='GitHub' path='https://github.com/ejomalley' icon={github_icon} />
     </div>
   );
@@ -45,8 +55,17 @@ const ImgSelf = () => {
     <img
         src={self} 
         alt="this is me, squatting in front of a graffiti mispelling billie eillish's name while i eat a banana"
-        className='h-32 rounded-full'
+        className='h-32 w-32 rounded-full'
         title='King Evan performs Divination Rite'
     />
+  );
+}
+
+const Blurb = (props) => {
+  return (
+    <div className='w-96 bg-gray-50 h-auto flex flex-col rounded-lg'>
+      <h1 className='text-lg font-semibold self-center my-3'>{props.title}</h1>
+      <p className='text-base font-sans font-extralight self-center mx-5 px-2 py-0.5 mb-5 bg-gray-200 rounded-lg'>{props.body}</p>
+    </div>
   );
 }
