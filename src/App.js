@@ -8,7 +8,7 @@ export default function App() {
     <div className="min-h-screen bg-gray-200 flex flex-col">
       <NavBar />
       <IntroHeader />
-      <div className='flex flex-row flex-wrap justify-center py-20'>
+      <div className='flex flex-row flex-wrap py-20 justify-evenly'>
         <Blurb 
           title='About Me' 
           body="Hi! My name is Evan O'Malley, and I'm using this website 
@@ -17,6 +17,26 @@ export default function App() {
           developer currently attending the University of Massachusetts Lowell,
           and I would much rather do backend work than frontend, but with this website
           I hope to be versed in both!"
+        />
+        <Blurb 
+          title='Languages'
+          body={
+            <div className='flex flex-row justify-around'>
+              <p className='self-center mx-6'>These are the programming languages with which I am most confident in my skills.</p>
+              <ul className='text-md font-mono bg-gray-100'>
+                <li>C</li>
+                <li>C++</li>
+                <li>C#</li>
+                <li>JavaScript</li>
+                <li>Python</li>
+                <li>Lua</li>
+                <li>OCaml</li>
+                <li>HTML</li>
+                <li>Java</li>
+                <li>GDScript</li>
+              </ul>
+            </div>
+          }
         />
       </div>
     </div>
@@ -64,9 +84,9 @@ const ImgSelf = () => {
 
 const Blurb = (props) => {
   return (
-    <div className='w-96 bg-gray-50 h-auto flex flex-col rounded-lg'>
-      <h1 className='text-lg font-semibold self-center my-3'>{props.title}</h1>
-      <p className='text-base font-sans font-extralight self-center mx-5 px-2 py-0.5 mb-5 bg-light-blue-50 rounded-lg'>{props.body}</p>
+    <div className='w-96 bg-gray-50 h-auto flex flex-col rounded-lg my-10 mx-10'>
+      <h1 className='text-xl font-semibold self-center my-3'>{props.title}</h1>
+      <p className='text-lg font-sans font-extralight self-center mx-5 px-2 py-0.5 mb-5 bg-light-blue-50 rounded-lg'>{props.body}</p>
     </div>
   );
 }
