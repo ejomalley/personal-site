@@ -1,7 +1,8 @@
 import React from 'react'
+import { SketchPicker } from 'react-color'
 import { NavBar } from './home'
 
-var drawColor = 'black'
+var drawColor = '#000000'
 var drawWidth = 2
 
 const Canvas = (props) => {
@@ -68,15 +69,17 @@ const DrawBox = (props) => {
 }
 
 const DrawTools = (props) => {
-  const [color, setColor] = React.useState('')
+  const [color, setColor] = React.useState()
   const [width, setWidth] = React.useState()
-  const handleClick = (e) => {
-    drawColor = e.target.value
-    setColor(drawColor)
-  }
+  // const handleClick = (e) => {
+  //   drawColor = e.target.value
+  //   setColor(drawColor)
+  // }
   React.useEffect(() => {
     setColor(drawColor)
     setWidth(drawWidth)
+    let ctx = document.getElementById('color-sel').getContext('2d')
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
   }, [])
 
   const clear = () => {
@@ -90,7 +93,7 @@ const DrawTools = (props) => {
   //   let w = window.open()
   //   w.document.write(`<img src=${imgURL} />`)
   //   clear()
-  console.log('SAVE NOT YET IMPLEMENTED')
+  window.alert('SAVE NOT YET IMPLEMENTED')
   }
 
   const updateWidth = (e) => {
@@ -98,28 +101,43 @@ const DrawTools = (props) => {
     setWidth(drawWidth)
   }
 
+  const showColorPicker = (e) => {
+    // !color-picker.visible
+  }
+
+  const handleChange = (color) => {
+    drawColor = color.hex
+    setColor(drawColor)
+    let ctx = document.getElementById('color-sel').getContext('2d')
+    ctx.fillStyle = drawColor
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    console.log(ctx)
+  }
+
   return (
     // Toolbox
-    <div className='bg-gray-300 w-32 h-auto self-center -mt-64 ml-10 py-2'>
-      {/* Color Wheel */}
-      <div className='flex flex-row justify-around flex-wrap'>
-        <button className='w-5 h-5 bg-black' onClick={handleClick} value={'black'}></button>
-        <button className='w-5 h-5 bg-green-600' onClick={handleClick} value={'green'}></button>
-        <button className='w-5 h-5 bg-blue-600' onClick={handleClick} value={'blue'}></button>    
-        <button className='w-5 h-5 bg-red-600' onClick={handleClick} value={'red'}></button>   
+    <div className='flex flex-col justify-center h-auto ml-10 -mt-64 py-5'>
+      <div className='mb-5 mx-auto'>
+        <SketchPicker width='8rem' onChange={handleChange} color={color} presetColors={['#FF0000', '#00FF00', '#0000FF', '#000000']}/>
       </div>
-      {/* Color Info */}
-      <p className='text-sm pt-8 px-1 text-center -mt-5'>Current Color:</p>
-      <p className='text-sm pt-1 px-1 text-center'>{color.toUpperCase()}</p>
-      {/* Pencil Width */}
-      <div className='mt-6 mb-8 flex flex-row justify-center'>
-        <label className='text-sm ml-2'>Width: </label>
-        <input type='number' className='w-10 h-5 ml-2' defaultValue={width} onChange={updateWidth}></input>
-      </div>
-      {/* Save/Clear */}
-      <div className='flex flex-row justify-around'>
-        <button className='bg-gray-100 hover:bg-gray-200 rounded px-1' onClick={save}>Save</button>
-        <button className='bg-gray-100 hover:bg-gray-200 rounded px-1' onClick={clear}>Clear</button>
+      <div className='bg-gray-300 w-32 h-auto flex flex-col'>
+        <div className='py-5'>
+          {/* Color Info */}
+          <div className='flex flex-row justify-center'>
+            <label className='text-sm'>{'Color: '}</label>
+            <canvas id='color-sel' className='w-5 h-5 border border-black bg-gray-100 self-center' onClick={showColorPicker} />
+          </div>
+          {/* Pencil Width */}
+          <div className='mt-6 mb-8 flex flex-row justify-center'>
+            <label className='text-sm ml-2'>Width: </label>
+            <input type='number' className='w-10 h-5 ml-2' defaultValue={width} onChange={updateWidth}></input>
+          </div>
+          {/* Save/Clear */}
+          <div className='flex flex-row justify-around'>
+            <button className='bg-gray-100 hover:bg-gray-200 rounded px-1' onClick={save}>Save</button>
+            <button className='bg-gray-100 hover:bg-gray-200 rounded px-1' onClick={clear}>Clear</button>
+          </div>
+        </div>
       </div>
     </div>
   )
