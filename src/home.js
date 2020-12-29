@@ -55,6 +55,7 @@ export const NavBar = () => {
 
 const NavButton = (props) => {
   const handleClick = () => { window.location.assign(props.path) }
+  window.title = props.text
   return (
     <button onClick={handleClick} className='self-stretch bg-gray-400 px-5 mr-5 hover:bg-white w-28 flex flex-row justify-evenly'>
       <p className='self-center'>{props.text}</p>{props.icon ? <img src={github_icon} alt='GitHub Icon' className='w-6 pl-2 self-center' /> : null}
@@ -77,7 +78,7 @@ const ImgSelf = () => {
     <img
         src={self} 
         alt="this is me, squatting in front of a graffiti mispelling billie eillish's name while i eat a banana"
-        className='h-32 w-32 rounded-full'
+        className='h-32 w-32 flex-shrink rounded-full '
         title='King Evan performs Divination Rite'
     />
   );
