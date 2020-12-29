@@ -1,6 +1,6 @@
 import './home.css';
 import self from './img/self.png';
-import github_icon from './img/github-icon.webp';
+import github_icon from './img/github.png';
 
 export default function Home() {
   return (
