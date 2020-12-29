@@ -1,8 +1,8 @@
-import './App.css';
+import './home.css';
 import self from './img/self.png';
 import github_icon from './img/github-icon.webp';
 
-export default function App() {
+export default function Home() {
   return (
     // background / main container
     <div className="min-h-screen bg-gray-200 flex flex-col">
@@ -43,11 +43,12 @@ export default function App() {
   );
 }
 
-const NavBar = () => {
+export const NavBar = () => {
   return (
     <div className='min-w-full bg-gray-700 h-12 flex flex-row justify-end'>
-      <NavButton text='SMth else' path='/' />
       <NavButton text='GitHub' path='https://github.com/ejomalley' icon={github_icon} />
+      {window.location.pathname === '/wikigame' ? <NavButton text='Home' path='/' /> : <NavButton text='WikiGame' path='/wikigame' />}
+      {window.location.pathname === '/drawtool' ? <NavButton text='Home' path='/' /> : <NavButton text='DrawTool' path='/drawtool' />}
     </div>
   );
 }
@@ -82,7 +83,7 @@ const ImgSelf = () => {
   );
 }
 
-const Blurb = (props) => {
+export const Blurb = (props) => {
   return (
     <div className='w-96 bg-gray-50 h-auto flex flex-col rounded-lg my-10 mx-10'>
       <h1 className='text-xl font-semibold self-center my-3'>{props.title}</h1>

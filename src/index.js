@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './assets/main.css';
-import App from './App';
+import Home from './home';
+import Wiki from './wiki'
+import DrawPage from './drawingtool'
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <Switch>
+        <Route exact path='/' component={Home} />
+        <Route exact path='/wikigame' component={Wiki} />
+        <Route exact path='/drawtool' component={DrawPage} />
+      </Switch>
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
