@@ -19,7 +19,6 @@ const Canvas = (props) => {
   }
   const mouseUp = (e) => {
     if (isMouseDown) {
-      drawLine(curx, cury, e.nativeEvent.offsetX, e.nativeEvent.offsetY, drawColor)
       curx = 0
       cury = 0
       isMouseDown = false
@@ -27,18 +26,25 @@ const Canvas = (props) => {
   }
   const mouseMove = (e) => {
     if (isMouseDown) {
-      drawLine(curx, cury, e.nativeEvent.offsetX, e.nativeEvent.offsetY, drawColor)
+      draw(e.nativeEvent.offsetX, e.nativeEvent.offsetY)
       curx = e.nativeEvent.offsetX
       cury = e.nativeEvent.offsetY
     }
   }
 
-  const drawLine = (x1, y1, x2, y2, color) => {
+  const draw = (x, y) => {
+    ctx.fillStyle = drawColor
+    ctx.fillRect(x, y, drawWidth, drawWidth)
+  }
+
+  const drawLine = (x1, y1, x2, y2) => {
     ctx.beginPath()
-    ctx.strokeStyle = color
+    ctx.strokeStyle = drawColor
+    // ctx.fillStyle = drawColor
     ctx.lineWidth = drawWidth
     ctx.moveTo(x1, y1)
     ctx.lineTo(x2, y2)
+    // ctx.arcTo(x1, y1, x2, y2, 60)
     ctx.stroke()
     ctx.closePath()
   }
@@ -116,11 +122,11 @@ const DrawTools = (props) => {
 
   return (
     // Toolbox
-    <div className='flex flex-col justify-center h-auto ml-10 -mt-64 py-5'>
+    <div className='flex flex-col justify-center h-auto w-72 ml-10 -mt-64 py-5'>
       <div className='mb-5 mx-auto'>
-        <SketchPicker width='8rem' onChange={handleChange} color={color} presetColors={['#FF0000', '#00FF00', '#0000FF', '#000000']}/>
+        <SketchPicker disableAlpha={false} width='8rem' onChange={handleChange} color={color} presetColors={['#FF0000', '#00FF00', '#0000FF', '#000000']}/>
       </div>
-      <div className='bg-gray-300 w-32 h-auto flex flex-col'>
+      <div className='bg-gray-300 w-32 h-auto flex flex-col mx-auto'>
         <div className='py-5'>
           {/* Color Info */}
           <div className='flex flex-row justify-center'>

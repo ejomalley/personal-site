@@ -57,9 +57,9 @@ const NavButton = (props) => {
   const handleClick = () => { window.location.assign(props.path) }
   window.title = props.text
   return (
-    <button onClick={handleClick} className='self-stretch bg-gray-400 px-5 mr-5 hover:bg-white w-28 flex flex-row justify-evenly'>
+    <a href={props.path} className='self-stretch bg-gray-400 px-5 mr-5 hover:bg-white w-28 flex flex-row justify-evenly'>
       <p className='self-center'>{props.text}</p>{props.icon ? <img src={github_icon} alt='GitHub Icon' className='w-6 pl-2 self-center' /> : null}
-    </button>
+    </a>
   );
 }
 
